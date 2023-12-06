@@ -1,0 +1,38 @@
+.characters {
+  font-size: 1.5rem;
+}
+
+.cgrid {
+  margin-top: 6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 2rem;
+  grid-column-gap: 5rem;
+}
+
+.char-icon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.char-image {
+  height: 250px;
+  width: 250px;
+  border-radius: 1rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.char-image:hover {
+  scale: 1.01;
+  transition: all 0.2s ease;
+  border-radius: 1rem;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: white;
+}

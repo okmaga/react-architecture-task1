@@ -1,0 +1,16 @@
+.icon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.image {
+  height: 250px;
+  width: 250px;
+  border-radius: 1rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
