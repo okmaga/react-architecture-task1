@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Table from "../../components/Table/Table";
+import { MantineTable } from "../../components/MantineTable";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import _ from "lodash";
 import { useInfinityLoader } from "../../hooks/useInfinityLoader";
@@ -46,7 +46,7 @@ export const Episodes = () => {
     <div className="episodes">
       <h2>Episodes</h2>
       {initialDataLoaded && (
-        <Table
+        <MantineTable
           data={sortedEpisodes}
           onClick={handleClick}
           sortBy={sortBy}

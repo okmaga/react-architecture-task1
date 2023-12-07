@@ -1,7 +1,8 @@
-import "./Table.module.css";
+import { Table } from "@mantine/core";
 import { IconArrowUp, IconArrowDown } from "@tabler/icons-react";
+import "./Table.module.css";
 
-const Table = ({ data, onSort, sortBy, onClick }) => {
+export function MantineTable({ data, onSort, sortBy, onClick }) {
   const columns = Object.keys(data[0]);
   const renderContent = (item, col) => {
     if (col === "created" || col === "air_date") {
@@ -51,9 +52,9 @@ const Table = ({ data, onSort, sortBy, onClick }) => {
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
+    <Table stickyHeader stickyHeaderOffset={45}>
+      <Table.Thead>
+        <Table.Tr>
           {columns.map((col) => {
             if (
               (col === "characters") |
@@ -63,18 +64,21 @@ const Table = ({ data, onSort, sortBy, onClick }) => {
               return null;
             }
             return (
-              <th key={col} onClick={() => handleSort(col)}>
+              <Table.Th key={col} onClick={() => handleSort(col)}>
                 {col}
                 <span>{renderSortArrow(col)}</span>
-              </th>
+              </Table.Th>
             );
           })}
-        </tr>
-      </thead>
-      <tbody>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>
         {Object.values(data).map((item) => {
           return (
-            <tr key={item.id || item.name} onClick={() => handleClick(item)}>
+            <Table.Tr
+              key={item.id || item.name}
+              onClick={() => handleClick(item)}
+            >
               {columns.map((col) => {
                 if (
                   (col === "characters") |
@@ -83,14 +87,14 @@ const Table = ({ data, onSort, sortBy, onClick }) => {
                 ) {
                   return null;
                 }
-                return <td key={col}>{renderContent(item, col)}</td>;
+                return (
+                  <Table.Td key={col}>{renderContent(item, col)}</Table.Td>
+                );
               })}
-            </tr>
+            </Table.Tr>
           );
         })}
-      </tbody>
-    </table>
+      </Table.Tbody>
+    </Table>
   );
-};
-
-export default Table;
+}

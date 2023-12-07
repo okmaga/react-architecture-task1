@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Table from "../../components/Table/Table";
+import { MantineTable } from "../../components/MantineTable";
 import _ from "lodash";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useInfinityLoader } from "../../hooks/useInfinityLoader";
@@ -45,7 +45,7 @@ export const Locations = () => {
     <div className="locations">
       <h2>Locations</h2>
       {initialDataLoaded && (
-        <Table
+        <MantineTable
           data={sortedLocations}
           onClick={handleClick}
           sortBy={sortBy}
