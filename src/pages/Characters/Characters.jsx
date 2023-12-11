@@ -3,6 +3,7 @@ import { CharIcon } from "../../components/CharIcon";
 import { useNavigate } from "react-router-dom";
 import { useInfinityLoader } from "../../hooks/useInfinityLoader";
 import classes from "./Characters.module.css";
+import { Loader } from "@mantine/core";
 
 const endpoint = "character";
 
@@ -17,6 +18,7 @@ export const Characters = () => {
     items: characters,
     lastNodeRef
   } = useInfinityLoader(endpoint, pageNumber, setPageNumber);
+
   const handleClick = (char) => {
     navigate(`/characters/${char.id}`, { state: { char } });
   };
@@ -42,11 +44,7 @@ export const Characters = () => {
           })}
       </div>
       <div ref={lastNodeRef}></div>
-      {loading && (
-        <div style={{ fontSize: "1.2rem" }} className="loading">
-          Loading...
-        </div>
-      )}
+      {loading && <Loader color="gray" type="dots" />}
       {error && (
         <div style={{ margin: "2rem", fontSize: "1rem" }} className="error">
           {error === "limit reached" ? "Nothing left to show!" : error}

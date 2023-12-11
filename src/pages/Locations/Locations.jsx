@@ -3,16 +3,40 @@ import { MantineTable } from "../../components/MantineTable";
 import _ from "lodash";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useInfinityLoader } from "../../hooks/useInfinityLoader";
+import { IconCheck } from "@tabler/icons-react";
+import {
+  SimpleGrid,
+  Card,
+  Text,
+  Badge,
+  Group,
+  Loader,
+  Notification,
+  rem
+} from "@mantine/core";
 
 const endpoint = "location";
 
 export const Locations = () => {
   const [initialDataLoaded, setInitialDataLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
   const [pageNumber, setPageNumber] = useState(1);
   const navigate = useNavigate();
+
+  const checkIcon = <IconCheck style={{ width: rem(20), height: rem(20) }} />;
+
   const handleClick = (loc) => {
     navigate(`/locations/${loc.id}`, { state: { loc } });
   };
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 480);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const {
     loading,
@@ -31,6 +55,7 @@ export const Locations = () => {
       setInitialDataLoaded(true);
     }
   }, [locations]);
+
   const handleSort = (sortRule) => {
     setSortBy(sortRule);
   };
@@ -44,7 +69,27 @@ export const Locations = () => {
   return (
     <div className="locations">
       <h2>Locations</h2>
-      {initialDataLoaded && (
+      {isMobile && initialDataLoaded && (
+        <SimpleGrid verticalSpacing="lg">
+          {locations.map((loc) => (
+            <Card
+              shadow="sm"
+              padding="lg"
+              radius="md"
+              withBorder
+              key={loc.name}
+              onClick={() => handleClick(loc)}
+            >
+              <Text fw={500}>{loc.name}</Text>
+              <Group justify="space-between" mt="md" mb="xs">
+                <Badge color="red">{loc.type}</Badge>
+                <Text>{loc.dimension}</Text>
+              </Group>
+            </Card>
+          ))}
+        </SimpleGrid>
+      )}
+      {!isMobile && initialDataLoaded && (
         <MantineTable
           data={sortedLocations}
           onClick={handleClick}
@@ -53,14 +98,21 @@ export const Locations = () => {
         />
       )}
       <div ref={lastNodeRef} style={{ height: "1rem" }}></div>
-      {loading && (
-        <div style={{ fontSize: "1.2rem" }} className="loading">
-          Loading...
-        </div>
-      )}
+      {loading && <Loader color="gray" type="dots" />}
       {error && (
         <div style={{ margin: "2rem", fontSize: "1rem" }} className="error">
-          {error === "limit reached" ? "Nothing left to show!" : error}
+          {error === "limit reached" ? (
+            <Notification
+              icon={checkIcon}
+              color="teal"
+              mt="md"
+              withCloseButton={false}
+            >
+              Nothing left to show!
+            </Notification>
+          ) : (
+            error
+          )}
         </div>
       )}
     </div>

@@ -3,7 +3,7 @@
     background: white;
     color: inherit;
     border: 1px dotted var(--mantine-color-dark-9);
-    padding: 0.5rem;
+    padding: 0.2rem;
     font-size: large;
     font-weight: 300;
   }
@@ -23,7 +23,7 @@
   text-decoration: none;
   color: inherit;
   line-height: 3rem;
-  padding: 1rem;
+  padding: 0.2rem;
   transition: all 0.2s ease;
 
   &:hover {

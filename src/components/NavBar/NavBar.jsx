@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
+import { Group } from "@mantine/core";
 import { NavProfile } from "./NavProfile";
 
 const data = [
@@ -28,11 +29,10 @@ const NavBar = () => {
   ));
   return (
     <>
-      <nav className={classes.navbar}>
-        <div className={classes.navbarMain}>
-          {links} <NavProfile />
-        </div>
-      </nav>
+      <Group justify="space-between">
+        <nav className={classes.navbar}>{links}</nav>
+        <NavProfile />
+      </Group>
     </>
   );
 };

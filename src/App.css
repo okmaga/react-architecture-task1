@@ -4,11 +4,3 @@
   padding: 2rem;
   color: var(--mantine-color-dark-9);
 }
-
-.main {
-  padding-top: 3rem;
-  font-weight: 300;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}

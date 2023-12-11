@@ -9,6 +9,9 @@ td {
   font-size: 1.2rem;
   border: none;
   border-collapse: collapse;
+  @media (max-width: $mantine-breakpoint-xs) {
+    font-size: 1rem;
+  }
 }
 
 th,
@@ -19,6 +22,10 @@ td {
   overflow: scroll;
   text-overflow: ellipsis;
   white-space: nowrap;
+  @media (max-width: $mantine-breakpoint-xs) {
+    max-width: 200px;
+    padding: 0.2rem;
+  }
 }
 
 th > span {
