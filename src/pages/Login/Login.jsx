@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@mantine/core";
 import "./Login.module.css";
 
 export const Login = () => {
@@ -32,7 +33,16 @@ export const Login = () => {
           type="text"
           name="login"
         />
-        <button type="submit">Log in</button>
+        <Button
+          variant="filled"
+          color="gray"
+          size="xl"
+          radius="lg"
+          type="submit"
+          fullWidth
+        >
+          Log in
+        </Button>
       </form>
     </div>
   );

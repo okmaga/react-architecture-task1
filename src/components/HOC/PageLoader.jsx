@@ -4,7 +4,7 @@ import PrivateRoute from "./PrivateRoute";
 
 const PageLoader = ({ page, isPrivate }) => {
   const Page = lazy(() =>
-    import(`../../pages/${page}`).then((module) => ({
+    import(`../../pages/${page}/${page}.jsx`).then((module) => ({
       default: module[page]
     }))
   );
