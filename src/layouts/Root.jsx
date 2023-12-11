@@ -8,12 +8,10 @@ import {
 } from "@mantine/core";
 import classes from "./Root.module.css";
 import NavBar from "../components/NavBar/NavBar";
-import { NavProfile } from "../components/NavBar/NavProfile";
-import { useAuth } from "../context/AuthProvider";
+import { SideBar } from "../components/NavBar/SideBar";
 
 const RootLayout = () => {
   const [opened, { toggle }] = useDisclosure();
-  const { user } = useAuth();
 
   return (
     <AppShell
@@ -37,47 +35,8 @@ const RootLayout = () => {
       </AppShell.Header>
 
       <AppShell.Navbar py="md" px={4}>
-        <MantineNavLink
-          className={classes.control}
-          component={Link}
-          label="Home"
-          to="/"
-          onClick={toggle}
-        />
-        <MantineNavLink
-          className={classes.control}
-          component={Link}
-          label="Characters"
-          to="/characters"
-          onClick={toggle}
-        />
-        <MantineNavLink
-          className={classes.control}
-          component={Link}
-          label="Episodes"
-          to="/episodes"
-          onClick={toggle}
-        />
-        <MantineNavLink
-          className={classes.control}
-          component={Link}
-          label="Locations"
-          to="/locations"
-          onClick={toggle}
-        />
-        {user ? (
-          <NavProfile />
-        ) : (
-          <MantineNavLink
-            className={classes.control}
-            component={Link}
-            label="Login"
-            to="/login"
-            onClick={toggle}
-          />
-        )}
+        <SideBar toggle={toggle} />
       </AppShell.Navbar>
-
       <AppShell.Main>
         <Outlet />
       </AppShell.Main>

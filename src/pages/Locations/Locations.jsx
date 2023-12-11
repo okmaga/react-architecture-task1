@@ -12,7 +12,8 @@ import {
   Group,
   Loader,
   Notification,
-  rem
+  rem,
+  Flex
 } from "@mantine/core";
 
 const endpoint = "location";
@@ -98,7 +99,11 @@ export const Locations = () => {
         />
       )}
       <div ref={lastNodeRef} style={{ height: "1rem" }}></div>
-      {loading && <Loader color="gray" type="dots" />}
+      {loading && (
+        <Flex align="center" justify="center">
+          <Loader color="gray" type="dots" />
+        </Flex>
+      )}
       {error && (
         <div style={{ margin: "2rem", fontSize: "1rem" }} className="error">
           {error === "limit reached" ? (

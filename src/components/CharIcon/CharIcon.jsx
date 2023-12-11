@@ -1,5 +1,5 @@
 import classes from "./Charicon.module.css";
-import { Card } from "@mantine/core";
+import { Card, Badge } from "@mantine/core";
 
 const CharIcon = ({ char, onClick }) => {
   return (
@@ -14,7 +14,7 @@ const CharIcon = ({ char, onClick }) => {
         className={classes.image}
         style={{ backgroundImage: `url(${char.image})` }}
       ></div>
-      <div>{char.name}</div>
+      <Badge color="gray">{char.name}</Badge>
     </Card>
   );
 };

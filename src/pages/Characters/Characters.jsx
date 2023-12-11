@@ -3,7 +3,7 @@ import { CharIcon } from "../../components/CharIcon";
 import { useNavigate } from "react-router-dom";
 import { useInfinityLoader } from "../../hooks/useInfinityLoader";
 import classes from "./Characters.module.css";
-import { Loader } from "@mantine/core";
+import { Loader, Flex } from "@mantine/core";
 
 const endpoint = "character";
 
@@ -44,7 +44,11 @@ export const Characters = () => {
           })}
       </div>
       <div ref={lastNodeRef}></div>
-      {loading && <Loader color="gray" type="dots" />}
+      {loading && (
+        <Flex align="center" justify="center">
+          <Loader color="gray" type="dots" />
+        </Flex>
+      )}
       {error && (
         <div style={{ margin: "2rem", fontSize: "1rem" }} className="error">
           {error === "limit reached" ? "Nothing left to show!" : error}
